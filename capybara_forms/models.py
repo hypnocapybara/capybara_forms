@@ -39,5 +39,5 @@ class SelectData(models.Model):
         on_delete=models.CASCADE,
         blank=True, null=True)
 
-    def __unicode__(self):
-        return u"%s : %s" % (self.key, self.value)
+    def __str__(self):
+        return '%s : %s' % (self.key, self.value)
