@@ -10,7 +10,7 @@ from capybara_forms.utils import float_to_string, django_field_to_capybara_field
 
 def render_field_to_template(template, field, advert_data, transform=None):
     value = advert_data.get(field['name'], {}).get('value')
-    if transform == 'float':
+    if transform == 'float' and isinstance(value, float):
         value = float_to_string(value) if value else ''
     elif transform == 'bool':
         value = bool(value)
@@ -109,7 +109,7 @@ def render_form_fields(category, advert_data):
         return '\n'.join(form_groups)
 
 
-def render_form_fields_from_model(form):
+def render_form_fields_from_model(form, advert_values):
     result = []
     fields = form.fields_in_model
 
@@ -119,7 +119,10 @@ def render_form_fields_from_model(form):
             data.update(form.fields_in_model_override[field])
 
         render_function = FIELD_TYPES_TO_FUNCTIONS[data['type']]
-        result.append('<div class="cpb_form_item">' + render_function(data, {}) + '</div>')
+        result.append(
+            '<div class="cpb_form_item">' +
+            render_function(data, advert_values) +
+            '</div>')
 
     return '\n'.join(result)
 

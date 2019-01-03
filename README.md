@@ -80,7 +80,7 @@ from .models import Advert
 
 
 class AdvertForm(CapybaraFormsModelForm):
-    # This fields from model will be rendered using form.render
+    # This fields from model will be rendered using form.render_form
     fields_in_model = ['title', 'price']
 
     # For custom placeholder
@@ -146,7 +146,7 @@ API, advanced usage cases, parameters definition
 and more information 
 
 See [example project](https://github.com/kenny1992/capybara_forms_example) 
-for all features, used in real application
+for all features, used in worked application
 
 
 # Slogan

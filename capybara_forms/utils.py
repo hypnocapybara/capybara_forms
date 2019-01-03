@@ -157,3 +157,15 @@ def django_field_to_capybara_field(form, field):
 
 def float_to_string(val):
     return str(val).rstrip('0').rstrip('.')
+
+
+def wrap_values(values):
+    """
+    Transforms form values to format, used in model and rendering functions
+    :param values: values from form in {key: value} format
+    :return: wrapped dict
+    """
+    return {
+        key: {'value': values[key]}
+        for key in values
+    }
