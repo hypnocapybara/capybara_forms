@@ -1,0 +1,37 @@
+<label for="cpb_form_input_{{ field.name }}" class="cpb_form_label cpb_form_label-select">
+    {{ field.display_name }}
+    {% if field.required %}*{% endif %}
+</label>
+
+<div class="cpb_form_input__wrapper">
+    <select id="cpb_form_input_{{ field.name }}" class="cpb_form_input cpb_form_input-select"
+            name="{% if field.full_name %}{{ field.full_name }}{% else %}data[{{ field.name }}]{% endif %}"
+            {% if field.required %}data-parsley-required{% endif %}
+            data-parsley-errors-container="#cpb_form_error_{{ field.name }}">
+        {% if field.full_name %}  {# full name exists --> it's a model field #}
+            {% for option in field.options %}
+                <option value="{{ option.0 }}"{% if value == option.0 %} selected{% endif %}>
+                    {{ option.1 }}
+                </option>
+            {% endfor %}
+        {% else %}
+            <option value='[0,"{{ not_selected }}"]'>
+                {{ not_selected }}
+            </option>
+
+            {% for option in field.options %}
+                <option value='[{{ option.0 }},"{{ option.1 }}"]'{% if value == option.0 %} selected{% endif %}>
+                    {{ option.1 }}
+                </option>
+            {% endfor %}
+        {% endif %}
+    </select>
+</div>
+
+{% if field.nested_on %}
+    <script type="text/javascript">
+        register_nested_select('{{ field.name }}', '{{ field.nested_on }}', '{{ field.nested_prefix }}');
+    </script>
+{% endif %}
+
+<div id="cpb_form_error_{{ field.name }}" class="cpb_form_error cpb_form_error-select"></div>

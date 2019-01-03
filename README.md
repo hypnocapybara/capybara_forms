@@ -1,0 +1,2 @@
+# Capybara forms
+

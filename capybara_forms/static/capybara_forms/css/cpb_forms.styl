@@ -1,0 +1,179 @@
+.cpb_form_item
+  margin-bottom 10px
+
+.cpb_form_label
+  margin-bottom 2px
+
+.cpb_form_input
+  display block
+  box-sizing border-box
+  width 100%
+  height 34px
+  padding 0 8px
+  font-size 14px
+  color #555
+  background-color #fff
+  background-image none
+  border 1px solid #ccc
+  border-radius 4px
+  box-shadow inset 0 1px 1px rgba(0, 0, 0, .075)
+  transition border-color ease-in-out .15s, box-shadow ease-in-out .15s
+
+.cpb_form
+  display table
+  margin-top 10px
+  position relative
+
+  .cpb_form_item
+    display table-row
+
+  .cpb_form_label
+    display table-cell
+    padding 0 20px 30px 0
+    &-checkbox
+      font-weight normal
+
+  .cpb_form_cell,
+  .cpb_form_input
+    display table-cell
+    &:focus, &:active
+      border-color #66afe9
+      outline 0
+      box-shadow inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6)
+    &-number
+      width 100px
+    &-select, &-string
+      width 190px
+
+.cpb_field_items
+  display table
+  margin-bottom 5px
+
+.cpb_field_item
+  display: table-row;
+
+.cpb_field_label,
+.cpb_field_value
+  display table-cell
+  padding 5px 0
+
+.cpb_field_label
+  font-weight bold
+  padding-right 25px
+  position relative
+  &:after
+    border-bottom 1px dotted #979797
+    bottom 6px
+    content ""
+    display block
+    right 4px
+    left 0
+    position absolute
+    z-index 10
+
+.cpb_field_label_title
+  background #fff
+  padding 0 3px 3px 0
+  position relative
+  z-index 20
+
+.cpb_form_error
+  color #a94442
+  font-size 14px
+
+.body_mobile
+  .cpb_form, .cpb_form_item
+    display block
+
+  .cpb_form_label
+    display block
+    padding 0
+
+  .cpb_form
+    .cpb_form_input
+      display block
+      &-number, &-select, &-string
+        width 100%
+      &__wrapper
+        display flex
+        .cpb_form_input__after
+          margin-left 5px
+          align-self center
+
+  .cpb_form_error
+    position static
+    height auto
+    overflow visible
+
+.cpb_form_spacer
+  display: table-row;
+  &:before, &:after
+    content " "
+    display table-cell
+    padding-bottom 25px
+    border-top 1px solid #ccc
+
+.cpb_form_input_color
+    &__color
+        cursor pointer
+        width 26px
+        height 26px
+        margin-right 11px
+        margin-bottom 2px
+        display inline-block
+        border-radius 50%
+    &__wrapper
+        max-width 325px
+        vertical-align middle
+        display table-cell
+        padding-bottom 14px
+        .cpb_form_input_color:first-child
+            .cpb_form_input_color__color
+                box-shadow inset 0 0 0 1px #dedede
+    input
+        display none
+        &:checked + span
+            background-image url(img/color_check.svg)
+            background-repeat no-repeat
+            background-position 50% 50%
+
+.cpb_filter_group
+  display flex
+  justify-content space-between
+  .cpb_filter_tiret
+    width 30px
+    position relative
+    &:after
+      content ' '
+      display block
+      width 25px
+      height 1px
+      margin 13px auto 0
+      border-bottom 2px solid #333
+  .cpb_form_item
+    display inline-block
+    flex 1
+    margin 0 5px
+    &:first-child
+      margin-left 0
+    &:last-child
+      margin-right 0
+    label
+      margin-top 5px
+
+input.parsley-error,
+select.parsley-error,
+textarea.parsley-error
+  color #B94A48
+  background-color #F2DEDE
+  border 1px solid #EED3D7
+
+.parsley-errors-list
+  margin 2px 0 3px
+  padding 0
+  list-style-type: none
+  opacity 0
+  transition all .3s ease-in
+
+.parsley-errors-list.filled
+  opacity 1

@@ -1,0 +1,17 @@
+{% if field.display_name %}
+    <label for="cpb_form_input_{{ field.name }}" class="cpb_form_label cpb_form_label-string">
+        {{ field.display_name }}
+        {% if field.required %}*{% endif %}
+    </label>
+{% endif %}
+
+<div class="cpb_form_input__wrapper">
+    <input id="cpb_form_input_{{ field.name }}" class="cpb_form_input cpb_form_input-string"
+           name="{% if field.full_name %}{{ field.full_name }}{% else %}data[{{ field.name }}]{% endif %}"
+           placeholder="{{ field.placeholder }}"
+           {% if field.required %}data-parsley-required{% endif %}
+           data-parsley-errors-container="#cpb_form_error_{{ field.name }}"
+           {% if value %} value="{{ value }}"{% endif %}>
+</div>
+
+<div id="cpb_form_error_{{ field.name }}" class="cpb_form_error cpb_form_error-string"></div>

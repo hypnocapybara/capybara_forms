@@ -1,0 +1,26 @@
+{% if field.display_name %}
+    <label for="cpb_form_input_{{ field.name }}" class="cpb_form_label cpb_form_label-number">
+        {{ field.display_name }}
+        {% if field.required %}*{% endif %}
+    </label>
+{% endif %}
+
+<div class="cpb_form_input__wrapper">
+    <input id="cpb_form_input_{{ field.name }}" class="cpb_form_input cpb_form_input-number"
+           name="{% if field.full_name %}{{ field.full_name }}{% else %}data[{{ field.name }}]{% endif %}"
+           placeholder="{{ field.placeholder }}" step="any"
+           {% if field.min_value %}min="{{ field.min_value }}"{% endif %}
+           {% if field.max_value %}max="{{ field.max_value }}"{% endif %}
+           type="number"
+           {% if field.required %}data-parsley-required{% endif %}
+           data-parsley-errors-container="#cpb_form_error_{{ field.name }}"
+           {% if value %}value="{{ value }}"{% endif %}>
+    {% if field.after_input %}
+        <span class="cpb_form_input__after">
+            {{ field.after_input }}
+        </span>
+    {% endif %}
+</div>
+
+
+<div id="cpb_form_error_{{ field.name }}" class="cpb_form_error cpb_form_error-number"></div>

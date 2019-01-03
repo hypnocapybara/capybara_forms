@@ -1,0 +1,21 @@
+<div class="cpb_form_label cpb_form_label-select">
+    {{ field.display_name }}
+    {% if field.required %}*{% endif %}
+</div>
+
+<div class="cpb_form_input__wrapper">
+    <div class="cpb_form_input_color__wrapper">
+        {% for color in colors %}
+            <label for="cpb_form_input_color_{{ forloop.counter }}" class="cpb_form_input_color">
+                <input type="radio" id="cpb_form_input_color_{{ forloop.counter }}"
+                       name="data[color]" value="{{ forloop.counter }}"
+                       {% if value == forloop.counter %}checked{% endif %}>
+                <span class="cpb_form_input_color__color" style="background-color: {{ color.0 }}"
+                      data-toggle="tooltip" title="{{ color.1 }}" data-placement="bottom"></span>
+            </label>
+        {% endfor %}
+    </div>
+</div>
+
+
+<div id="cpb_form_error_color" class="cpb_form_error cpb_form_error-select"></div>

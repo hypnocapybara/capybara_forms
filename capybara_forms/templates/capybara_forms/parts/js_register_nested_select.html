@@ -1,0 +1,21 @@
+function register_nested_select(field, nested_field, options_prefix) {
+    field = $('#cpb_form_input_' + field);
+    nested_field = $('#cpb_form_input_' + nested_field);
+
+    nested_field.change(function() {
+        var value = nested_field.val();
+        {% if not is_filter %}
+        value = JSON.parse(value)[0];
+        {% endif %}
+        const cat_name = options_prefix + '.' + value;
+
+        $.ajax({
+            method: 'GET',
+            url: '/load_options/',
+            data: {key: cat_name{% if is_filter %}, is_filter: 1{% endif %}},
+            success: function(data) {
+                field.html(data);
+            }
+        })
+    });
+}

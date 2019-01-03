@@ -1,0 +1,20 @@
+{% if field.display_name %}
+    <label for="cpb_form_input_{{ field.name }}" class="cpb_form_label cpb_form_label-select">
+        {{ field.display_name }}
+    </label>
+{% endif %}
+<select id="cpb_form_input_{{ field.name }}" class="cpb_form_input cpb_form_input-select"
+        name="{% if field.full_name %}{{ field.full_name }}{% else %}data[{{ field.name }}]{% endif %}">
+    <option value="0">{{ not_selected }}</option>
+    {% for option in field.options %}
+        <option value="{{ option.0 }}"{% if field.value == option.0 %} selected{% endif %}>{{ option.1 }}</option>
+    {% endfor %}
+</select>
+
+{% if field.nested_on %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            register_nested_select('{{ field.name }}', '{{ field.nested_on }}', '{{ field.nested_prefix }}');
+        });
+    </script>
+{% endif %}

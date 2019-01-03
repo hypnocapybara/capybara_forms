@@ -1,0 +1,9 @@
+{% if field.display_name %}
+    <label for="cpb_form_input_{{ field.name }}" class="cpb_form_label cpb_form_label-number">
+        {{ field.display_name }}
+    </label>
+{% endif %}
+<input id="cpb_form_input_{{ field.name }}" class="cpb_form_input cpb_form_input-number"
+       name="{% if field.full_name %}{{ field.full_name }}{% else %}data[{{ field.name }}]{% endif %}"
+       placeholder="{{ field.placeholder }}" step="any"
+       type="number" value="{{ field.value }}">

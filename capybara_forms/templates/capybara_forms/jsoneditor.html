@@ -1,0 +1,22 @@
+<div id="{{ name }}_editor"></div>
+
+<textarea cols="40" id="id_{{ name }}" name="{{ name }}" rows="20" required="" style="display: none">{{ data }}</textarea>
+
+<script>
+    var container_{{ name }} = document.getElementById("{{ name }}_editor");
+
+    var options_{{ name }} = {
+        modes: ['code', 'tree'],
+        search: true,
+
+        onChange: function () {
+            json_{{ name }} = editor_{{ name }}.get();
+            document.getElementById("id_{{ name }}").innerHTML=JSON.stringify(json_{{ name }});
+        }
+    };
+
+    var editor_{{ name }} = new JSONEditor(container_{{ name }}, options_{{ name }});
+    var json_{{ name }} = {{ data|safe }};
+    editor_{{ name }}.set(json_{{ name }});
+    editor_{{ name }}.aceEditor.setOptions({maxLines: 50});
+</script>
