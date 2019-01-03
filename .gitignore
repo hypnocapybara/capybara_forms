@@ -2,4 +2,6 @@
 /conf/__pycache__/
 /db.sqlite3
 *.pyc
-
+/build/
+/capybara_forms.egg-info/
+/dist/
