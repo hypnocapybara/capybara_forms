@@ -1,0 +1,2 @@
+recursive-include capybara_forms/templates *
+recursive-include capybara_forms/static *

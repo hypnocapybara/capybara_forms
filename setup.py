@@ -11,8 +11,15 @@ with open('README.md') as f:
 
 setup(
     name='capybara_forms',
-    version='0.0.1',
-    packages=['capybara_forms', 'capybara_forms.renderers', 'capybara_forms.migrations'],
+    version='0.0.2',
+    packages=[
+        'capybara_forms',
+        'capybara_forms.renderers',
+        'capybara_forms.migrations',
+        'capybara_forms.static',
+        'capybara_forms.templates',
+    ],
+    include_package_data=True,
     install_requires=['Django'],
     url='https://github.com/kenny1992/capybara_forms',
     license='',
