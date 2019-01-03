@@ -23,4 +23,10 @@
 </div>
 
 
-<div id="cpb_form_error_{{ field.name }}" class="cpb_form_error cpb_form_error-number"></div>
+<div id="cpb_form_error_{{ field.name }}" class="cpb_form_error cpb_form_error-number">
+    {% if errors %}
+        {% for error in errors %}
+            <div>{{ error }}</div>
+        {% endfor %}
+    {% endif %}
+</div>

@@ -81,14 +81,14 @@ class CapybaraFormsModelForm(forms.ModelForm):
         else:
             instance_values = wrap_values(self.data)
 
-        model_part = render_form_fields_from_model(self, instance_values)
+        model_part = render_form_fields_from_model(self, instance_values, self.errors)
 
         if self.instance.data:
             data_values = self.instance.data
         else:
             data_values = wrap_values(get_data_fields(self.data))
 
-        category_part = render_form_fields(self.category, data_values)
+        category_part = render_form_fields(self.category, data_values, self.data_errors)
 
         return model_part + category_part
 

@@ -8,7 +8,7 @@ from capybara_forms.defines import colors
 from capybara_forms.utils import float_to_string, django_field_to_capybara_field
 
 
-def render_field_to_template(template, field, advert_data, transform=None):
+def render_field_to_template(template, field, advert_data, data_errors, transform=None):
     value = advert_data.get(field['name'], {}).get('value')
     if transform == 'float' and isinstance(value, float):
         value = float_to_string(value) if value else ''
@@ -17,15 +17,17 @@ def render_field_to_template(template, field, advert_data, transform=None):
 
     return render_to_string(template, {
         'field': field,
-        'value': value
+        'value': value,
+        'errors': data_errors.get(field['name'], [])
     })
 
 
-def _render_form_string(field, advert_data):
-    return render_field_to_template('capybara_forms/form/string.html', field, advert_data)
+def _render_form_string(field, advert_data, data_errors):
+    return render_field_to_template(
+        'capybara_forms/form/string.html', field, advert_data, data_errors)
 
 
-def _render_form_select(field, advert_data):
+def _render_form_select(field, advert_data, data_errors):
     not_selected = getattr(settings, 'CAPYBARA_FORMS_NOT_SELECTED', 'Not selected')
 
     if 'nested_on' in field:
@@ -44,23 +46,27 @@ def _render_form_select(field, advert_data):
     return render_to_string('capybara_forms/form/select.html', {
         'field': field,
         'value': advert_data.get(field['name'], {}).get('value'),
-        'not_selected': not_selected
+        'not_selected': not_selected,
+        'errors': data_errors.get(field['name'], [])
     })
 
 
-def _render_form_number(field, advert_data):
-    return render_field_to_template('capybara_forms/form/number.html', field, advert_data, 'float')
+def _render_form_number(field, advert_data, data_errors):
+    return render_field_to_template(
+        'capybara_forms/form/number.html', field, advert_data, data_errors, 'float')
 
 
-def _render_form_checkbox(field, advert_data):
-    return render_field_to_template('capybara_forms/form/checkbox.html', field, advert_data, 'bool')
+def _render_form_checkbox(field, advert_data, data_errors):
+    return render_field_to_template(
+        'capybara_forms/form/checkbox.html', field, advert_data, data_errors, 'bool')
 
 
-def _render_form_color(field, advert_data):
+def _render_form_color(field, advert_data, data_errors):
     return render_to_string('capybara_forms/form/color.html', {
         'field': field,
         'value': int(advert_data.get('color', {}).get('value', 0)),
-        'colors': colors
+        'colors': colors,
+        'errors': data_errors.get('color', [])
     })
 
 
@@ -73,7 +79,7 @@ FIELD_TYPES_TO_FUNCTIONS = {
 }
 
 
-def render_form_fields(category, advert_data):
+def render_form_fields(category, advert_data, data_errors):
     if category.form_template:
         fields_in_form = re.findall('{(\w+)}', category.form_template)
         result = category.form_template
@@ -90,7 +96,7 @@ def render_form_fields(category, advert_data):
                     render_function = FIELD_TYPES_TO_FUNCTIONS[field['type']]
                     result = result.replace('{'+field_name+'}',
                                             '<div class="cpb_form_item">' +
-                                            render_function(field, advert_data) +
+                                            render_function(field, advert_data, data_errors) +
                                             '</div>')
         return result
     else:
@@ -99,7 +105,7 @@ def render_form_fields(category, advert_data):
         for field in category.params:
             if 'type' in field and field['type'] in FIELD_TYPES_TO_FUNCTIONS:
                 render_function = FIELD_TYPES_TO_FUNCTIONS[field['type']]
-                form_groups.append(render_function(field, advert_data))
+                form_groups.append(render_function(field, advert_data, data_errors))
 
         form_groups = [
             '<div class="cpb_form_item">' + item + '</div>'
@@ -109,7 +115,7 @@ def render_form_fields(category, advert_data):
         return '\n'.join(form_groups)
 
 
-def render_form_fields_from_model(form, advert_values):
+def render_form_fields_from_model(form, advert_values, errors):
     result = []
     fields = form.fields_in_model
 
@@ -121,7 +127,7 @@ def render_form_fields_from_model(form, advert_values):
         render_function = FIELD_TYPES_TO_FUNCTIONS[data['type']]
         result.append(
             '<div class="cpb_form_item">' +
-            render_function(data, advert_values) +
+            render_function(data, advert_values, errors) +
             '</div>')
 
     return '\n'.join(result)

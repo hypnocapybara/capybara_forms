@@ -1,6 +1,7 @@
 import re
 import json
 
+from django.conf import settings
 from django.core.exceptions import FieldDoesNotExist
 from django.db.models.fields import CharField, \
     IntegerField, FloatField, BooleanField
@@ -108,7 +109,10 @@ def validate_data(category, data):
         if 'required' in field and field['required']:
             valid = field['name'] in data and 'value' in data[field['name']] and data[field['name']]['value']
             if not valid:
-                result.append((field['name'], u'Необходимо заполнить поле'))
+                result.append((
+                    field['name'],
+                    getattr(settings, 'CAPYBARA_FORMS_ERROR_REQUIRED', 'This field is required')
+                ))
 
     return result
 

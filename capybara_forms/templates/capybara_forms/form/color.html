@@ -18,4 +18,10 @@
 </div>
 
 
-<div id="cpb_form_error_color" class="cpb_form_error cpb_form_error-select"></div>
+<div id="cpb_form_error_color" class="cpb_form_error cpb_form_error-select">
+    {% if errors %}
+        {% for error in errors %}
+            <div>{{ error }}</div>
+        {% endfor %}
+    {% endif %}
+</div>
