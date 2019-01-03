@@ -126,11 +126,19 @@ for validation. All dependencies listed below
 </form>
 ```
 
-Result form:
+Result form: <br/>
 ![Form image](images/form_image.png)
 
-Result filter, with similar schema, plus some in-form configuration
+Result filter, with similar schema, plus some in-form configuration: <br/>
 ![Filter image](images/filter_image.png)
+
+
+# Dependencies
+1. [Django](https://www.djangoproject.com/)
+2. [jQuery](https://jquery.com/) (version 3.3.1 included)
+3. [JSON editor](http://jsoneditoronline.org/) 
+(version 5.9.6 included)
+4. [parsley](http://parsleyjs.org/) (version 2.8.1 included)
 
 
 ---
