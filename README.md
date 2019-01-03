@@ -21,7 +21,7 @@ class Advert(CapybaraFormsModel(Category)):
     # Global model fields
     title = models.CharField(max_length=100)
     price = models.PositiveSmallIntegerField()
-    # Rest data fields will be stored in JSON 'data' field
+    # Rest fields will be stored in JSON 'data' field
 ```
 
 <span>2.</span> Write schema for category 'Cats'
@@ -140,10 +140,13 @@ Result filter, with similar schema, plus some in-form configuration: <br/>
 (version 5.9.6 included)
 4. [parsley](http://parsleyjs.org/) (version 2.8.1 included)
 
-# Documentation
+# Documentation and full example
 See [readthedocs](capybara-forms.readthedocs.io) for
 API, advanced usage cases, parameters definition
 and more information 
+
+See [example project](https://github.com/kenny1992/capybara_forms_example) 
+for all features, used in real application
 
 
 # Slogan
