@@ -140,7 +140,11 @@ Result filter, with similar schema, plus some in-form configuration: <br/>
 (version 5.9.6 included)
 4. [parsley](http://parsleyjs.org/) (version 2.8.1 included)
 
+# Documentation
+See [readthedocs](capybara-forms.readthedocs.io) for
+API, advanced usage cases, parameters definition
+and more information 
 
----
+
+# Slogan
 > _With goal to simplify, with love to capybaras_
----
