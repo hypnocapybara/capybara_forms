@@ -21,4 +21,13 @@ setup(
     description='Dynamic Django forms and filters using JSON schema',
     long_description=long_description,
     long_description_content_type='text/markdown',
+    classifiers=[
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 3',
+        'Framework :: Django',
+        'Topic :: Internet :: WWW/HTTP',
+        'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
+        'Topic :: Software Development :: Libraries :: Python Modules',
+        'License :: OSI Approved :: MIT License',
+    ],
 )
