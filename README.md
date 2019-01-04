@@ -127,10 +127,10 @@ for validation. All dependencies listed below
 ```
 
 Result form: <br/>
-![Form image](images/form_image.png)
+![Form image](https://raw.githubusercontent.com/kenny1992/capybara_forms/master/images/form_image.png)
 
 Result filter, with similar schema, plus some in-form configuration: <br/>
-![Filter image](images/filter_image.png)
+![Filter image](https://raw.githubusercontent.com/kenny1992/capybara_forms/master/images/filter_image.png)
 
 
 # Dependencies
