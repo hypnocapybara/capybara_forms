@@ -6,3 +6,6 @@
 /capybara_forms.egg-info/
 /dist/
 /.pytest_cache
+/.coverage
+/coverage.xml
+
