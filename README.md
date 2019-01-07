@@ -1,3 +1,6 @@
+[![codecov](https://codecov.io/gh/kenny1992/capybara_forms/branch/master/graph/badge.svg)](https://codecov.io/gh/kenny1992/capybara_forms/)
+[![pypi](https://img.shields.io/pypi/v/capybara_forms.svg)](https://pypi.org/project/capybara-forms/)
+
 # Capybara forms
 Dynamic Django forms and filters using JSON schema.
 
