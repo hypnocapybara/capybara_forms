@@ -5,3 +5,4 @@
 /build/
 /capybara_forms.egg-info/
 /dist/
+/.pytest_cache
